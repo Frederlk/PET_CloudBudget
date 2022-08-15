@@ -1,36 +1,3 @@
-//<INPUT>
-// Снипет (HTML): inp
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-textarea {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
-.input {
-    border-radius: 0 !important;
-    width: 100%;
-    display: block;
-    padding: 0px 20px;
-    border: 1px solid #eee;
-    &:focus-visible {
-        outline-offset: rem(-1);
-        outline: white solid rem(1);
-    }
-    &._form-focus {
-    }
-    &._form-error {
-        color: red;
-    }
-}
-textarea.input {
-    resize: none;
-    padding: 0px 0px;
-}
-
-//========================================================================================================================================================
-
 //<INPUT (inp+tab)>====================================================================================================
 input[type="text"],
 input[type="email"],
@@ -41,29 +8,26 @@ textarea {
     appearance: none;
 }
 .input {
-    border: 1px solid #333333;
-    border-radius: 6px;
+    border: rem(1) solid $dark_02;
+    border-radius: rem(6);
     width: 100%;
     display: block;
-    padding: 0px 30px;
-    transition: all 0.3s ease 0s;
-    font-size: 16px;
-    line-height: 19 / 16 * 100%;
+    padding: 0px rem(30);
+    transition: color 0.3s ease 0s, border 0.3s ease 0s;
+    font-size: rem(16);
+    line-height: math.div(19, 16);
     color: rgba(19, 39, 67, 0.5);
-    @media (max-width: $md3+px) {
-        font-size: 18px;
-        padding: 0px 20px;
+    min-height: rem(60);
+    &._form-focus {
+        color: $secondary_01;
+        border: rem(1) solid $black;
     }
-    min-height: 60px;
-    &._focus {
-        color: rgba(19, 39, 67, 1);
-        border: 1px solid $black;
+    &._form-error {
+        border: rem(1) solid $primary_02;
     }
-    &._error {
-        border: 1px solid $lightRed;
+
+    @media (max-width: $mobile) {
+        font-size: rem(18);
+        padding: 0px rem(20);
     }
-}
-textarea.input {
-    resize: none;
-    padding: 0px 0px;
 }

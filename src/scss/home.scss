@@ -1,24 +1,17 @@
 .main {
-    min-height: 100vh;
     position: relative;
-    &__body {
-    }
-
-    &__content {
+    &__container {
         position: relative;
         padding-top: 30vh;
-        @include adaptiv-value("padding-bottom", 40, 20, 1);
+        padding-bottom: rem(40);
         z-index: 2;
-        @media (min-width: $md2+px) {
-            @media (max-height: 400px) {
+        @media (min-width: $tablet) {
+            @media (max-height: em(400)) {
                 @media screen and (orientation: landscape) {
-                    padding-top: 140px;
+                    padding-top: rem(140);
                 }
             }
         }
-    }
-
-    &__container {
     }
 
     &__inner {
@@ -30,44 +23,43 @@
 
     &__title {
         font-weight: 700;
-        @include adaptiv-font(72, 36, 1);
-        line-height: 86 / 72 * 100%;
+        @include adaptiveValue("font-size", 72, 36, 1110, 479.98, 1);
+        line-height: math.div(86, 72);
         letter-spacing: 0.05em;
         text-transform: uppercase;
-        color: #ffffff;
-        @include adaptiv-value("margin-bottom", 40, 20, 1);
+        color: $white;
+        @include adaptiveValue("margin-bottom", 40, 20, 1110, 767.98, 1);
     }
 
     &__text {
-        max-width: 540px;
+        max-width: rem(540);
         font-weight: 600;
-        @include adaptiv-font(24, 20, 1);
+        @include adaptiveValue("font-size", 24, 20, 1110, 767.98, 1);
         line-height: 150%;
-        color: #ffffff;
-        @include adaptiv-value("margin-bottom", 50, 30, 1);
+        color: $white;
+        @include adaptiveValue("margin-bottom", 50, 30, 1110, 767.98, 1);
     }
 
     &__btn {
-        min-width: 160px;
-        min-height: 50px;
-        color: $red;
+        min-width: rem(160);
+        min-height: rem(50);
+        color: $primary_03;
         font-weight: 600;
-        background-color: #fff;
+        background-color: $white;
         @media (any-hover: hover) {
             &:hover {
-                color: #fff;
+                color: $white;
                 background-color: transparent;
             }
         }
     }
 
-    &__image {
+    &__image-ibg {
         position: absolute;
         width: 100%;
         height: 100%;
         top: 0;
         left: 0;
-        min-height: 100vh;
         &::after {
             content: "";
             position: absolute;
@@ -84,89 +76,71 @@
 
 .about {
     &__container {
-    }
-
-    &__row {
+        gap: rem(40);
         display: flex;
-        margin: 0px -10px;
         justify-content: space-between;
-        @media (max-width: $md3+px) {
+        @media (max-width: $mobile) {
             flex-wrap: wrap;
             justify-content: center;
         }
     }
 
-    &__column {
-        flex: 0 1 465px;
-        padding: 0px 10px;
-        @media (max-width: $md3+px) {
+    &__content {
+        flex: 0 1 rem(445);
+        @include adaptiveValue("margin-top", 45, 0, 1110, 767.98, 1);
+        @media (max-width: $mobile) {
             flex: 1 1 100%;
         }
     }
-}
-.column-about {
-    @include adaptiv-value("margin-top", 45, 0, 1);
-    @media (max-width: $md3+px) {
-        @include adaptiv-value("margin-bottom", 50, 30, 1);
-    }
-    &__body {
-    }
 
     &__title {
-        font-weight: 600;
-        @include adaptiv-font(36, 28, 1);
-        line-height: 43 / 36 * 100%;
-        color: $black;
+        @extend %text_01;
         &:not(:last-child) {
-            @include adaptiv-value("margin-bottom", 45, 20, 1);
+            @include adaptiveValue("margin-bottom", 45, 20, 1110, 767.98, 1);
         }
     }
 
     &__text {
-        font-size: 14px;
         line-height: 140%;
         text-align: justify;
-        color: $black;
-        @media (max-width: $md3+px) {
-            font-size: 18px;
-        }
         &:not(:last-child) {
-            @include adaptiv-value("margin-bottom", 20, 15, 1);
+            @include adaptiveValue("margin-bottom", 20, 15, 1110, 767.98, 1);
+        }
+        @media (max-width: $mobile) {
+            font-size: rem(18);
         }
     }
 
     &__more {
-        font-size: 14px;
         line-height: 140%;
         text-align: justify;
-        color: $red;
-        transition: all 0.3s ease 0s;
-        @media (max-width: $md3+px) {
-            font-size: 18px;
-        }
+        color: $primary_03;
+        transition: color 0.3s ease 0s;
         @media (any-hover: hover) {
             &:hover {
                 color: $black;
             }
         }
-    }
-}
-.about-video {
-    &__body {
-        display: block;
-        position: relative;
+        @media (max-width: $mobile) {
+            font-size: rem(18);
+        }
     }
 
-    &__image {
-        padding: 0px 0px 311/445 * 100% 0px;
-        border-radius: 15px;
-        overflow: hidden;
-        @media (max-width: $md3+px) {
-            padding: 0px 0px 50% 0px;
-            min-height: 250px;
+    &__video {
+        flex: 0 1 rem(480);
+        display: block;
+        position: relative;
+        @media (max-width: $mobile) {
+            flex: 1 1 100%;
         }
+    }
+
+    &__thumb-ibg {
+        padding-bottom: percent(311, 445);
+        border-radius: rem(15);
+        overflow: hidden;
         img {
-            transition: all 0.3s ease 0s;
+            transition: transform 0.3s ease 0s;
         }
         @media (any-hover: hover) {
             &:hover {
@@ -175,193 +149,157 @@
                 }
             }
         }
+        @media (max-width: $mobile) {
+            padding-bottom: 50%;
+            min-height: rem(250);
+        }
     }
 
     &__button {
         position: absolute;
-        width: 66px;
-        height: 66px;
+        width: rem(66);
+        height: rem(66);
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        background-color: $lightRed;
-        border: 1px solid $lightRed;
+        background-color: $primary_02;
+        border: rem(1) solid $primary_02;
         border-radius: 50%;
         color: $white;
         top: 50%;
         left: 0;
         transform: translate(-50%, -50%);
-        transition: all 0.3s ease 0s;
+        transition: color 0.3s ease 0s, background-color 0.3s ease 0s;
         &::before {
             transform: translate(10%, 0);
         }
         @media (any-hover: hover) {
             &:hover {
                 background-color: $white;
-                color: $lightRed;
+                color: $primary_02;
             }
         }
-        @media (max-width: $md2+px) {
+        @media (max-width: $tablet) {
             top: 50%;
             left: 50%;
         }
     }
 }
-.popup__popup-video {
-    @include adaptiv-value("height", 500, 250, 1);
-}
 
 //========================================================================================================================================================
 
 .features {
-    background: #fafafa;
-
+    background-color: $light_01;
     &__container {
     }
 
-    &__body {
+    &__title {
+        @extend %text_01;
+        text-align: center;
+        @include adaptiveValue("margin-bottom", 70, 25, 1110, 767.98, 1);
     }
 
-    &__title {
-        font-weight: 600;
-        text-align: center;
-        @include adaptiv-font(36, 28, 1);
-        line-height: 43 / 36 * 100%;
-        color: $black;
-        @include adaptiv-value("margin-bottom", 70, 25, 1);
-    }
     &__content {
-        display: flex;
-        margin: 0px -15px;
-        @media (max-width: $md2+px) {
-            margin: 0px -10px;
-        }
-        @media (max-width: $md3+px) {
-            flex-wrap: wrap;
-            margin: 0px;
-        }
-        @media (max-width: $md4+px) {
-            margin: 0px -20px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        @include adaptiveValue("gap", 30, 20, 1110, 850, 1);
+        @media (max-width: em(850)) {
+            @include adaptiveValue("gap", 50, 40, 850, 479.98, 1);
+            grid-template-columns: 1fr;
         }
     }
 
     &__column {
     }
 }
-.column-features {
-    flex: 0 1 33.333%;
-    padding: 0px 15px;
-    @media (max-width: $md2+px) {
-        padding: 0px 10px;
-    }
-    @media (max-width: $md3+px) {
-        flex: 1 1 100%;
-        padding: 0px;
-        margin: 0px 0px 30px 0px;
-    }
-    &__item {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        position: relative;
-    }
 
-    &__image {
-        padding: 0px 0px 250/350 * 100% 0px;
-        min-height: 250px;
-        border-radius: 8px;
+.column-features {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+
+    &__image-ibg {
+        padding-bottom: percent(250, 350);
+        min-height: rem(250);
+        border-radius: rem(8);
         overflow: hidden;
         position: relative;
         z-index: 1;
-        @media (max-width: $md3+px) {
-            padding: 0px 0px 50% 0px;
+        @media (max-width: $mobile) {
+            padding-bottom: 50%;
         }
     }
 
     &__body {
         position: relative;
         z-index: 2;
-        background-color: #fff;
-        box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
+        background-color: $white;
+        box-shadow: 0px rem(5) rem(30) rgba(0, 0, 0, 0.1);
         border-radius: 8px;
         overflow: hidden;
-        margin: -105px 30px 0px 30px;
-        padding: 35px 20px 25px 20px;
+        margin: rem(-105) rem(30) 0px rem(30);
+        padding: rem(35) rem(20) rem(25) rem(20);
         text-align: center;
         flex: 1 1 auto;
         display: flex;
         flex-direction: column;
-        transition: all 0.5s ease 0s;
+        transition: transform 0.5s ease 0s;
         @media (any-hover: hover) {
             &:hover {
-                margin: -115px 30px 10px 30px;
+                transform: translate(0px, rem(-20));
             }
         }
-        @media (max-width: $md2+px) {
-            margin: -105px 10px 0px 10px;
-            @media (any-hover: hover) {
-                &:hover {
-                    margin: -115px 10px 10px 10px;
-                }
-            }
+        @media (max-width: $tablet) {
+            margin-right: rem(10);
+            margin-left: rem(10);
         }
-        @media (max-width: $md3+px) {
-            padding: 15px;
-            margin: -105px 20px 0px 20px;
+        @media (max-width: $mobile) {
+            padding: rem(15);
+            margin-right: rem(20);
+            margin-left: rem(20);
         }
     }
 
     &__title {
         font-weight: 700;
-        font-size: 18px;
-        line-height: 22 / 18 * 100%;
-        color: #101010;
+        font-size: rem(18);
+        line-height: math.div(22, 18);
+        color: $dark_01;
         &:not(:last-child) {
-            @include adaptiv-value("margin-bottom", 20, 15, 1);
+            @include adaptiveValue("margin-bottom", 20, 15, 1110, 767.98, 1);
         }
-        transition: all 0.3s ease 0s;
+        transition: color 0.3s ease 0s;
         @media (any-hover: hover) {
             &:hover {
-                color: $lightRed;
+                color: $primary_02;
             }
         }
-        @media (max-width: $md3+px) {
-            font-size: 24px;
+        @media (max-width: $mobile) {
+            font-size: rem(22);
         }
     }
 
     &__text {
-        font-size: 12px;
+        @extend %text_02;
         line-height: 150%;
-        color: #101010;
+        color: $dark_01;
         flex: 1 1 auto;
         &:not(:last-child) {
-            @include adaptiv-value("margin-bottom", 25, 20, 1);
-        }
-        @media (max-width: $md2+px) {
-            font-size: 14px;
-        }
-        @media (max-width: $md3+px) {
-            font-size: 18px;
+            @include adaptiveValue("margin-bottom", 25, 20, 1110, 767.98, 1);
         }
     }
 
     &__more {
+        @extend %text_02;
         font-weight: 700;
-        font-size: 12px;
         line-height: 150%;
-        color: $lightRed;
-        transition: all 0.3s ease 0s;
+        color: $primary_02;
+        transition: color 0.3s ease 0s;
         @media (any-hover: hover) {
             &:hover {
                 color: $black;
             }
-        }
-        @media (max-width: $md2+px) {
-            font-size: 14px;
-        }
-        @media (max-width: $md3+px) {
-            font-size: 18px;
         }
     }
 }
@@ -372,174 +310,115 @@
     }
 
     &__title {
-        font-weight: 600;
+        @extend %text_01;
+        @include adaptiveValue("margin-bottom", 50, 30, 1110, 767.98, 1);
         text-align: center;
-        @include adaptiv-font(36, 28, 1);
-        line-height: 43 / 36 * 100%;
-        color: $black;
-        @include adaptiv-value("margin-bottom", 50, 30, 1);
     }
 
     &__body {
-        display: flex;
-        margin: 0px -15px;
-        @media (max-width: $md2+px) {
-            margin: 0px -10px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        @include adaptiveValue("gap", 30, 20, 1110, 767.98, 1);
+        @media (max-width: $mobile) {
+            grid-template-columns: repeat(2, 1fr);
         }
-        @media (max-width: $md3+px) {
-            flex-wrap: wrap;
-        }
-        @media (max-width: $md4+px) {
-            margin: 0;
-        }
-    }
-
-    &__column {
-        padding: 0px 15px;
-        flex: 0 1 25%;
-        margin: 0px 0px 30px 0px;
-        @media (max-width: $md2+px) {
-            padding: 0px 10px;
-        }
-        @media (max-width: $md3+px) {
-            flex: 0 1 50%;
-        }
-        @media (max-width: $md4+px) {
-            flex: 1 1 100%;
-            padding: 0;
+        @media (max-width: $mobileSmall) {
+            grid-template-columns: 1fr;
         }
     }
 
     &__item {
-        padding: 0px 30px;
-        @media (max-width: $md2+px) {
-            padding: 0px 20px;
-        }
-        @media (max-width: $md4+px) {
-            padding: 0;
+        @media (min-width: $tablet) {
+            padding: 0px rem(30);
         }
     }
 }
+
 .item-tech {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     text-align: center;
-    height: 100%;
     &__icon {
-        margin: 0px 0px 30px 0px;
         font-weight: 700;
-        font-size: 100px;
-        line-height: 120 / 100 * 100%;
+        margin-bottom: rem(20);
+        @include adaptiveValue("font-size", 100, 60);
+        line-height: math.div(120, 100);
         color: rgba(16, 16, 16, 0.08);
         position: relative;
-        @media (max-width: $md3+px) {
-            font-size: 60px;
-            &::before {
-                font-size: 48px;
-            }
-            margin: 0px 0px 20px 0px;
-        }
         &::before {
             position: absolute;
+            @include adaptiveValue("font-size", 66, 48);
+            color: $primary_02;
             bottom: 0;
-            font-size: 66px;
-            color: $lightRed;
             left: 50%;
-            transform: translate(-50%, 10px);
+            transform: translate(-50%, rem(10));
         }
     }
 
     &__title {
         font-weight: 700;
-        font-size: 18px;
-        line-height: 22 / 18 * 100%;
-        color: #101010;
-        margin: 0px 0px 10px 0px;
-        flex: 1 1 auto;
-        @media (max-width: $md3+px) {
-            font-size: 24px;
+        font-size: rem(18);
+        line-height: math.div(22, 18);
+        color: $dark_01;
+        margin-bottom: rem(10);
+        @media (max-width: $mobile) {
+            font-size: rem(22);
         }
     }
 
     &__text {
-        font-size: 12px;
-        line-height: 14 /12 * 100%;
-        color: $black;
-        @media (max-width: $md2+px) {
-            font-size: 14px;
-        }
-        @media (max-width: $md3+px) {
-            font-size: 18px;
-        }
+        flex: 1 1 auto;
+        @extend %text_02;
     }
 }
 
 //========================================================================================================================================================
 
 .focused {
-    background-color: $lightRed;
+    background-color: $primary_02;
     &__container {
-    }
-
-    &__body {
-        display: flex;
-        justify-content: space-between;
-        @media (max-width: $md2+px) {
-            margin: 0px -10px;
-        }
-        @media (max-width: $md3+px) {
-            display: block;
+        @media (min-width: $mobile) {
+            display: flex;
+            gap: rem(40);
+            justify-content: space-between;
         }
     }
 
     &__content {
-        flex: 0 1 445px;
-        @media (max-width: $md2+px) {
-            flex: 0 1 50%;
-            padding: 0px 10px;
-        }
-        @media (max-width: $md3+px) {
-            flex: 1 1 100%;
+        flex: 0 1 rem(445);
+        @media (max-width: $tablet) {
+            flex: 0 1 calc(50% - rem(10));
         }
     }
 
     &__slider {
-        flex: 0 0 645px;
+        flex: 0 1 rem(645);
         min-width: 0;
-        @media (max-width: $md2+px) {
-            flex: 0 1 50%;
-            padding: 0px 10px;
-        }
-        @media (max-width: $md3+px) {
-            padding: 0;
+        @media (max-width: $tablet) {
+            flex: 0 1 calc(50% - rem(10));
         }
     }
 }
+
 .content-focused {
-    &__body {
-        @include adaptiv-value("margin-top", 30, 0, 1);
-        @media (max-width: $md3+px) {
-            margin-top: 0;
-        }
+    @media (min-width: $mobile) {
+        @include adaptiveValue("margin-top", 30, 0, 1110, 767.98, 1);
     }
 
     &__title {
-        font-weight: 600;
-        @include adaptiv-font(36, 28, 1);
-        line-height: 43 / 36 * 100%;
+        @extend %text_01;
         color: $white;
-        @include adaptiv-value("margin-bottom", 40, 20, 1);
+        @include adaptiveValue("margin-bottom", 40, 20, 1110, 767.98, 1);
     }
 
     &__text {
-        font-size: 14px;
         line-height: 140%;
         text-align: justify;
         color: $white;
-        @include adaptiv-value("margin-bottom", 40, 20, 1);
-        @media (max-width: $md3+px) {
-            font-size: 18px;
+        @include adaptiveValue("margin-bottom", 40, 20, 1110, 767.98, 1);
+        @media (max-width: $mobile) {
+            font-size: rem(18);
         }
     }
 
@@ -549,87 +428,76 @@
     }
 
     &__app-item {
-        font-size: 32px;
+        font-size: rem(32);
         color: $white;
-        transition: all 0.3s ease 0s;
+        transition: color 0.3s ease 0s;
         @media (any-hover: hover) {
             &:hover {
                 color: $black;
             }
         }
         &._icon-windows {
-            font-size: 24px;
+            font-size: rem(24);
         }
         &:not(:last-child) {
-            @include adaptiv-value("margin-right", 25, 15, 1);
+            @include adaptiveValue("margin-right", 25, 15, 1110, 767.98, 1);
         }
     }
 }
+
 .slider-focused {
-    @media (max-width: $md3+px) {
-        @include adaptiv-value("margin-bottom", 30, 20, 1);
+    @media (max-width: $mobile) {
+        @include adaptiveValue("margin-top", 40, 30, 1110, 767.98, 1);
     }
-    @media (max-width: $md4+px) {
-        margin-left: -15px;
-        margin-right: -15px;
+    @media (max-width: $mobileSmall) {
+        margin-left: rem(-15);
+        margin-right: rem(-15);
     }
     &__slider {
-        @include adaptiv-value("padding-right", 100, 50, 1);
-        @include adaptiv-value("padding-left", 100, 50, 1);
-        @media (max-width: $md2+px) {
-            padding: 0;
+        @media (min-width: $pc) {
+            padding: 0px rem(100);
         }
-    }
-    .swiper-wrapper {
-        align-items: center;
+        .swiper-wrapper {
+            align-items: center;
+            @media (min-width: $pc) {
+                height: rem(310);
+            }
+        }
     }
 
-    &__slide {
+    &__slide-ibg {
         position: relative;
         z-index: 1;
-        opacity: 0;
-        @media (max-width: $md2+px) {
+        overflow: hidden;
+        height: rem(270);
+        @media (min-width: $pc) {
+            transition: opacity 1s ease 0s, height 1s ease 0s;
+            opacity: 0.25 !important;
+        }
+        @media (max-width: $pc) {
+            padding-bottom: percent(310, 445);
             opacity: 1;
         }
-        @media (max-width: $md3+px) {
+        @media (max-width: $mobile) {
             flex: 1 1 100%;
+            padding-bottom: 50%;
+            min-height: rem(250);
+        }
+        @media (min-width: $mobileSmall) {
+            border-radius: rem(15);
         }
         &.swiper-slide-active {
             z-index: 2;
-            opacity: 1 !important;
-            .slider-focused__image {
-                padding: 0px 0px 310/445 * 100% 0px;
-                @media (max-width: $md3+px) {
-                    padding: 0px 0px 50% 0px;
-                    min-height: 250px;
-                }
+            @media (min-width: $pc) {
+                height: rem(310);
+                opacity: 1 !important;
             }
         }
         &.swiper-slide-prev,
         &.swiper-slide-next {
-            opacity: 0.5 !important;
-            @media (max-width: $md2+px) {
-                opacity: 0 !important;
+            @media (min-width: $pc) {
+                opacity: 0.5 !important;
             }
-            @media (max-width: $md3+px) {
-                opacity: 1 !important;
-            }
-        }
-    }
-
-    &__image {
-        border-radius: 15px;
-        overflow: hidden;
-        height: 270px;
-        @media (max-width: $md2+px) {
-            padding: 0px 0px 310/445 * 100% 0px;
-        }
-        @media (max-width: $md3+px) {
-            padding: 0px 0px 50% 0px;
-            min-height: 250px;
-        }
-        @media (max-width: $md4+px) {
-            border-radius: 0;
         }
     }
 }
@@ -638,111 +506,87 @@
 
 .contact {
     &__container {
-    }
-
-    &__body {
-        display: flex;
-        justify-content: space-between;
-        margin: 0px -15px;
-        @media (max-width: $md3+px) {
-            flex-wrap: wrap;
-            margin: 0;
+        @media (min-width: $mobile) {
+            display: flex;
+            justify-content: space-between;
+            gap: rem(40);
         }
     }
 
     &__info {
-        flex: 0 1 465px;
-        padding: 0px 15px;
-        @media (max-width: $md3+px) {
-            padding: 0;
-            flex: 1 1 100%;
-            @include adaptiv-value("margin-bottom", 50, 30, 1);
+        @media (min-width: $mobile) {
+            flex: 0 1 rem(445);
+        }
+        @media (max-width: $mobile) {
+            @include adaptiveValue("margin-bottom", 50, 30, 1110, 767.98, 1);
         }
     }
 
     &__form {
-        flex: 0 1 560px;
-        padding: 0px 15px;
-        @media (max-width: $md3+px) {
-            padding: 0;
-            flex: 1 1 100%;
+        @media (min-width: $mobile) {
+            flex: 0 1 rem(540);
         }
     }
 }
-.info-contact {
-    &__body {
-    }
 
+.info-contact {
     &__title {
-        font-weight: 600;
-        @include adaptiv-font(36, 28, 1);
-        line-height: 43 / 36 * 100%;
-        color: $black;
+        @extend %text_01;
         &:not(:last-child) {
-            @include adaptiv-value("margin-bottom", 50, 20, 1);
+            @include adaptiveValue("margin-bottom", 50, 20, 1110, 767.98, 1);
         }
     }
 
     &__text {
-        font-size: 14px;
         line-height: 140%;
         text-align: justify;
-        color: $black;
         &:not(:last-child) {
-            @include adaptiv-value("margin-bottom", 40, 20, 1);
+            @include adaptiveValue("margin-bottom", 40, 20, 1110, 767.98, 1);
         }
-        @media (max-width: $md3+px) {
-            font-size: 18px;
+        @media (max-width: $mobile) {
+            font-size: rem(18);
         }
     }
 }
+
 .form-contact {
-    &__body {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: rem(30);
+    row-gap: rem(25);
+    @media (max-width: $tablet) {
+        gap: rem(20);
     }
-
-    &__row {
-        display: flex;
-        margin: 0px -15px;
-        @media (max-width: $md2+px) {
-            margin: 0px -10px;
-        }
-        @media (max-width: $md4+px) {
-            flex-wrap: wrap;
-            margin: 0px;
-        }
-    }
-    &__top {
-        flex: 0 1 50%;
-        padding: 0px 15px;
-        @media (max-width: $md2+px) {
-            padding: 0px 10px;
-        }
-        @media (max-width: $md4+px) {
-            flex: 1 1 100%;
-            padding: 0;
-        }
-    }
-
     &__input {
-        @include adaptiv-value("margin-bottom", 25, 20, 1);
+        flex: 1 1 100%;
+        &_top {
+            flex: 0 1 calc(50% - rem(15));
+            @media (max-width: $tablet) {
+                flex: 0 1 calc(50% - rem(10));
+            }
+            @media (max-width: $mobileSmall) {
+                flex: 1 1 100%;
+            }
+        }
     }
     &__select-item {
-        @include adaptiv-value("margin-bottom", 25, 20, 1);
+        flex: 1 1 100%;
     }
+
     &__select {
     }
 
     &__btn {
-        background-color: $lightRed;
-        min-height: 50px;
-        min-width: 160px;
-        border: 1px solid $lightRed;
+        background-color: $primary_02;
+        min-height: rem(50);
+        min-width: rem(160);
+        border: rem(1) solid $primary_02;
         @media (any-hover: hover) {
             &:hover {
-                color: $lightRed;
+                color: $primary_02;
             }
         }
-        @media (max-width: $md4+px) {
+        @media (max-width: $mobileSmall) {
             width: 100%;
         }
     }

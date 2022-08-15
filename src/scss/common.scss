@@ -1,1 +1,14 @@
 // Заголовки, общие БЄМ блоки и проче...
+%text_01 {
+    font-weight: 600;
+    @include adaptiveValue("font-size", 36, 28, 1110, 479.98, 1);
+    line-height: math.div(43, 36);
+}
+
+%text_02 {
+    font-size: rem(12);
+    line-height: math.div(14, 12);
+    @media (max-width: $tablet) {
+        @include adaptiveValue("font-size", 14, 18, 991.98, 767.98, 1);
+    }
+}

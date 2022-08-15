@@ -1,34 +1,25 @@
-import Swiper, { Navigation, Autoplay, Keyboard } from "swiper";
+import Swiper, { Navigation, Keyboard, EffectFade } from "swiper";
 import "../../scss/base/swiper.scss";
 
 function initSliders() {
     if (document.querySelector(".slider-focused__slider")) {
         new Swiper(".slider-focused__slider", {
-            modules: [Navigation, Autoplay, Keyboard],
+            modules: [Navigation, Keyboard, EffectFade],
             observer: true,
             observeParents: true,
             slidesPerView: 1,
             spaceBetween: -395,
             autoHeight: false,
             speed: 1000,
-            watchOverflow: true,
+            initialSlide: 1,
+            effect: "fade",
             adaptiveHeight: true,
-            simulateTouch: true,
-            touchRatio: 1,
-            touchAngle: 45,
-            grabCursor: true,
             keyboard: {
                 enabled: true,
                 onlyInViewport: true,
                 pageUpDown: true,
             },
-            loop: true,
             loopedSlides: 2,
-            autoplay: {
-                delay: 3000,
-                stopOnLastSlide: false,
-                disableOnInteraction: false,
-            },
             breakpoints: {
                 320: {
                     spaceBetween: 0,
@@ -36,7 +27,7 @@ function initSliders() {
                 479.98: {
                     spaceBetween: 0,
                 },
-                991.98: {
+                1110: {
                     effect: "slide",
                     spaceBetween: -395,
                 },
