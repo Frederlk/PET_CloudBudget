@@ -22,11 +22,6 @@
         object-fit: cover;
     }
 }
-[class*="-ibg_contain"] {
-    img {
-        object-fit: contain;
-    }
-}
 
 // Адаптивное видео
 %responsiveVideo {
